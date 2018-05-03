@@ -7,6 +7,12 @@ export default function () {
     let radius = Math.min(chartWidth, chartHeight) / 2,
         innerRadius = 0.3 * radius;
 
+    function updateRadius()
+    {
+        radius = Math.min(chartWidth, chartHeight) / 2;
+        innerRadius = 0.3 * radius;
+    }
+
     function chart(selection) {
 
         //let tip = d3.tip()
@@ -88,16 +94,14 @@ export default function () {
     chart.width = function (value) {
         if (!arguments.length) return chartWidth;
         chartWidth = value;
-        radius = Math.min(chartWidth, chartHeight) / 2;
-        innerRadius = 0.3 * radius;
+        updateRadius();
         return chart;
     };
 
     chart.height = function (value) {
         if (!arguments.length) return chartHeight;
         chartHeight = value;
-        radius = Math.min(chartWidth, chartHeight) / 2;
-        innerRadius = 0.3 * radius;
+        updateRadius();
         return chart;
     };
 
