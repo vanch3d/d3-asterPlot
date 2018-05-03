@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Dependency Wheel</title>
+    <title>Aster Plot</title>
 </head>
 <body>
 
@@ -36,8 +36,12 @@
 
 
         let chart = d3.asterPlot()
-            .width(600)
-            .height(600);
+            .width(500)
+            .height(500)
+            .pieFill(function(elt,idx){
+                return (idx === 0) ? "#ccc" : elt.data.color;
+            })
+            .pieClass(() => "sector");
 
         // generate the chart from the dataset in the selected element
         d3.select('#chart')
