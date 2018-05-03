@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dependency Wheel</title>
+</head>
+<body>
+
+<div id="chart" style="width: 100%;">
+</div>
+<div id="legend"></div>
+
+
+</body>
+<script src="../node_modules/d3v4/build/d3.min.js"></script>
+<script src="../dist/d3-asterPlot.js"></script>
+<script>
+    (function () {
+
+        // original data set converted to plain array
+        let data = [
+            {"id":"FIS","order":1.1,"score":59,"width":0.5,"color":"#9E0041","label":"Fisheries"},
+            {"id":"MAR","order":1.3,"score":24,"width":0.5,"color":"#C32F4B","label":"Mariculture"},
+            {"id":"AO","order":2,"score":98,"width":1,"color":"#E1514B","label":"Artisanal Fishing Opportunities"},
+            {"id":"NP","order":3,"score":60,"width":1,"color":"#F47245","label":"Natural Products"},
+            {"id":"CS","order":4,"score":74,"width":1,"color":"#FB9F59","label":"Carbon Storage"},
+            {"id":"CP","order":5,"score":70,"width":1,"color":"#FEC574","label":"Coastal Protection"},
+            {"id":"TR","order":6,"score":42,"width":1,"color":"#FAE38C","label":"Tourism &  Recreation"},
+            {"id":"ECO","order":7.3,"score":88,"width":0.5,"color":"#C7E89E","label":"Economies"},
+            {"id":"ICO","order":8.1,"score":60,"width":0.5,"color":"#9CD6A4","label":"Iconic Species"},
+            {"id":"LSP","order":8.3,"score":65,"width":0.5,"color":"#6CC4A4","label":"Lasting Special Places"},
+            {"id":"CW","order":9,"score":71,"width":1,"color":"#4D9DB4","label":"Clean Waters"},
+            {"id":"HAB","order":10.1,"score":88,"width":0.5,"color":"#4776B4","label":"Habitats"},
+            {"id":"SPP","order":10.3,"score":83,"width":0.5,"color":"#5E4EA1","label":"Species"}
+        ];
+
+
+        let chart = d3.asterPlot()
+            .width(600)
+            .height(600);
+
+        // generate the chart from the dataset in the selected element
+        d3.select('#chart')
+            .datum(data)
+            .call(chart);
+
+    })();
+</script>
+</html>
