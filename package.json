@@ -1,0 +1,54 @@
+{
+  "name": "d3-asterPlot",
+  "version": "0.1.0",
+  "description": "A d3-module implementing an Aster Plot",
+  "keywords": [
+    "d3",
+    "d3-module",
+    "Aster Plot"
+  ],
+  "author": {
+    "name": "vanch3d",
+    "url": "https://github.com/vanch3d"
+  },
+  "contributors": [
+    {
+      "name": "Ben Best",
+      "url": "https://github.com/bbest"
+    },
+    {
+      "name": "Jim Regetz",
+      "url": "https://github.com/regetz"
+    },
+    {
+      "name": "Parker Abercrombie",
+      "url": "https://github.com/parkerabercrombie"
+    }
+  ],
+  "license": "MIT",
+  "main": "dist/d3-asterPlot.js",
+  "jsnext:main": "index",
+  "homepage": "https://github.com/vanch3d/d3-asterPlot",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vanch3d/d3-asterPlot.git"
+  },
+  "scripts": {
+    "pretest": "rimraf dist && mkdirp dist && rollup -c",
+    "test": "tape test/**/*-test.js && eslint index.js src",
+    "prepublish": "npm run test && uglifyjs dist/d3-asterPlot.js -c -m -o dist/d3-asterPlot.min.js",
+    "postpublish": ""
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "mkdirp": "^0.5.1",
+    "package-preamble": "^0.1.0",
+    "rimraf": "^2.6.2",
+    "rollup": "^0.58.1",
+    "tape": "^4.9.0",
+    "uglify-js-es6": "^2.8.9"
+  },
+  "dependencies": {
+    "d3v4": "^4.2.2"
+  }
+}
