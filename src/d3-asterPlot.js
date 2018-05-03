@@ -61,9 +61,9 @@ export default function () {
                 .enter()
                 .append("path")
                 .attr("fill", pieFill)
-                .attr("class", function(){
+                .attr("class", function(d){
                     let cls = "solidArc";
-                    if (pieClass()) cls += " " + pieClass();
+                    if (pieClass) cls += " " + pieClass(d);
                     return cls;
                 })
                 .attr("stroke", "gray")
