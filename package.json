@@ -37,7 +37,7 @@
     "pretest": "rimraf dist && mkdirp dist && rollup -c",
     "test": "tape test/**/*-test.js && eslint index.js src",
     "prepublish": "npm run test && uglifyjs dist/d3-asterPlot.js -c -m -o dist/d3-asterPlot.min.js",
-    "postpublish": ""
+    "install": "npm run pretest && uglifyjs dist/d3-asterPlot.js -c -m -o dist/d3-asterPlot.min.js"
   },
   "devDependencies": {
     "eslint": "^4.19.1",
