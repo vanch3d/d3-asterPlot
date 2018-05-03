@@ -7,6 +7,14 @@ export default function () {
     let radius = Math.min(chartWidth, chartHeight) / 2,
         innerRadius = 0.3 * radius;
 
+    let pieFill = function(d) {
+        return d.data.color;
+    };
+
+    let pieClass = function() {
+        return null;
+    };
+
     function updateRadius()
     {
         radius = Math.min(chartWidth, chartHeight) / 2;
@@ -52,10 +60,12 @@ export default function () {
                 .data(pie(dataSet))
                 .enter()
                 .append("path")
-                .attr("fill", function (d) {
-                    return d.data.color;
+                .attr("fill", pieFill)
+                .attr("class", function(){
+                    let cls = "solidArc";
+                    if (pieClass()) cls += " " + pieClass();
+                    return cls;
                 })
-                .attr("class", "solidArc")
                 .attr("stroke", "gray")
                 .attr("d", arc);
             //.on('mouseover', tip.show)
@@ -104,6 +114,19 @@ export default function () {
         updateRadius();
         return chart;
     };
+
+    chart.pieFill = function(fct) {
+        if (typeof (fct) !== 'function') throw new Error("Not a function");
+        pieFill = fct || pieFill;
+        return chart;
+    };
+
+    chart.pieClass = function(fct) {
+        if (typeof (fct) !== 'function') throw new Error("Not a function");
+        pieClass = fct || pieClass;
+        return chart;
+    };
+
 
     return chart;
 }
