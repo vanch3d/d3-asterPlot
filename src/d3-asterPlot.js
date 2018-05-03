@@ -15,6 +15,21 @@ export default function () {
         return null;
     };
 
+    let score = function(data)
+    {
+        return data.reduce(
+            function (a, b) {
+                return a + (b.score * b.width);
+            }
+            , 0
+        ) / data.reduce(
+            function (a, b) {
+                return a + b.width;
+            }
+            , 0
+        );
+    };
+
     function updateRadius()
     {
         radius = Math.min(chartWidth, chartHeight) / 2;
@@ -80,23 +95,11 @@ export default function () {
                 .attr("class", "outlineArc")
                 .attr("d", outlineArc);
 
-            let score = dataSet.reduce(
-                function (a, b) {
-                    return a + (b.score * b.width);
-                }
-                , 0
-            ) / dataSet.reduce(
-                function (a, b) {
-                    return a + b.width;
-                }
-                , 0
-            );
-
             svg.append("svg:text")
                 .attr("class", "aster-score")
                 .attr("dy", ".35em")
                 .attr("text-anchor", "middle") // text-align: right
-                .text(Math.round(score));
+                .text(Math.round(score(dataSet)));
 
         });
     }
@@ -127,6 +130,11 @@ export default function () {
         return chart;
     };
 
+    chart.score = function(fct) {
+        if (typeof (fct) !== 'function') throw new Error("Not a function");
+        score = fct || score;
+        return chart;
+    };
 
     return chart;
 }
