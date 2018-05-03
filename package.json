@@ -1,6 +1,6 @@
 {
   "name": "d3-asterPlot",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A d3-module implementing an Aster Plot",
   "keywords": [
     "d3",
