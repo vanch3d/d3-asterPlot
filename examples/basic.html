@@ -65,18 +65,28 @@
             {"id":"SPP","order":10.3,"score":83,"width":0.5,"color":"#5E4EA1","label":"Species"}
         ];
 
+        let score = function(data)
+        {
+            let x = data.reduce(function (a, b) { return a + (b.score * b.width); }, 0);
+            let y = data.reduce(function (a, b) { return a + b.width; }, 0);
+            return  `${Math.round(x/y)}`;
+        };
+
         let chart = d3.asterPlot()
             .width(500)
             .height(500)
             .pieFill(function(elt,idx){
                 return (idx === 0) ? "#ccc" : elt.data.color;
             })
-            .pieClass((d) => d.data.id);
+            .pieClass((d) => d.data.id)
+            .score(score);
 
         // generate the chart from the dataset in the selected element
         d3.select('#chart')
             .datum(data)
             .call(chart);
+
+
 
     })();
 </script>

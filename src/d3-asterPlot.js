@@ -19,7 +19,7 @@ export default function () {
 
     let score = function(data)
     {
-        return data.reduce(
+        return Math.round(data.reduce(
             function (a, b) {
                 return a + (b.score * b.width);
             }
@@ -29,7 +29,7 @@ export default function () {
                 return a + b.width;
             }
             , 0
-        );
+        ));
     };
 
     function updateRadius()
@@ -100,8 +100,8 @@ export default function () {
             svg.append("svg:text")
                 .attr("class", "aster-score")
                 .attr("dy", ".35em")
-                .attr("text-anchor", "middle") // text-align: right
-                .text(Math.round(score(dataSet)));
+                .attr("text-anchor", "middle")
+                .text(score);
 
         });
     }
