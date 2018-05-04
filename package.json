@@ -37,7 +37,7 @@
     "clean": "rimraf dist && mkdirp dist",
     "pretest": "npm run clean && rollup -c",
     "test": "tape test/**/*-test.js && eslint index.js src",
-    "build": "uglifyjs dist/d3-asterPlot.js -c -m -o dist/d3-asterPlot.min.js",
+    "build": "npm run pretest && uglifyjs dist/d3-asterPlot.js -c -m -o dist/d3-asterPlot.min.js",
     "prepublishOnly": "npm run test",
     "install": "npm run build"
   },
