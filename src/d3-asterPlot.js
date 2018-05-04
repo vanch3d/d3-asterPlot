@@ -1,4 +1,6 @@
 /* global d3 */
+import * as d3 from 'd3-tip';
+
 export default function () {
 
     let chartWidth = 960;
@@ -36,14 +38,14 @@ export default function () {
         innerRadius = 0.3 * radius;
     }
 
-    function chart(selection) {
 
-        //let tip = d3.tip()
-        //    .attr('class', 'd3-tip')
-        //    .offset([0, 0])
-        //    .html(function(d) {
-        //        return d.data.label + ": <span style='color:orangered'>" + d.data.score + "</span>";
-        //    });
+    function chart(selection) {
+        let tip = d3.tip()
+            .attr('class', 'd3-tip')
+            .offset([0, 0])
+            .html(function(d) {
+                return d.data.label + ": <span style='color:orangered'>" + d.data.score + "</span>";
+            });
 
         selection.each(function (dataSet) {
             let pie = d3.pie()
@@ -68,7 +70,7 @@ export default function () {
                 .append("g")
                 .attr("transform", "translate(" + chartWidth / 2 + "," + chartHeight / 2 + ")");
 
-            //svg.call(tip);
+            svg.call(tip);
 
             // path
             svg.selectAll(".solidArc")
@@ -82,9 +84,9 @@ export default function () {
                     return cls;
                 })
                 .attr("stroke", "gray")
-                .attr("d", arc);
-            //.on('mouseover', tip.show)
-            //.on('mouseout', tip.hide);
+                .attr("d", arc)
+                .on('mouseover', tip.show)
+                .on('mouseout', tip.hide);
 
             // outerpath
             svg.selectAll(".outlineArc")
