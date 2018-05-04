@@ -34,10 +34,12 @@
     "url": "https://github.com/vanch3d/d3-asterPlot.git"
   },
   "scripts": {
-    "pretest": "rimraf dist && mkdirp dist && rollup -c",
+    "clean": "rimraf dist && mkdirp dist",
+    "pretest": "npm run clean && rollup -c",
     "test": "tape test/**/*-test.js && eslint index.js src",
-    "prepublish": "npm run test && uglifyjs dist/d3-asterPlot.js -c -m -o dist/d3-asterPlot.min.js",
-    "install": "npm run pretest && uglifyjs dist/d3-asterPlot.js -c -m -o dist/d3-asterPlot.min.js"
+    "build": "uglifyjs dist/d3-asterPlot.js -c -m -o dist/d3-asterPlot.min.js",
+    "prepublishOnly": "npm run test",
+    "install": "npm run build"
   },
   "devDependencies": {
     "eslint": "^4.19.1",
@@ -46,9 +48,10 @@
     "rimraf": "^2.6.2",
     "rollup": "^0.58.1",
     "tape": "^4.9.0",
-    "uglify-js-es6": "^2.8.9"
+    "uglify-js-es6": "^2.8.9",
+    "d3v4": "^4.2.2"
   },
   "dependencies": {
-    "d3v4": "^4.2.2"
+    "d3-tip": "^0.9.0"
   }
 }
